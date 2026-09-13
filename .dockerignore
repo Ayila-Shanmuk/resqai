@@ -1,0 +1,11 @@
+.git
+.gitignore
+__pycache__
+*.pyc
+*.pyo
+venv
+.venv
+frontend/node_modules
+frontend/dist
+backend/resqai.db
+.DS_Store

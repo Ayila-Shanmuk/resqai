@@ -1,0 +1,24 @@
+# Render Blueprint (render.yaml) for ResQAI
+# Deploy ResQAI as a unified Web Service on Render (Free Tier compatible)
+
+services:
+  - type: web
+    name: resqai
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: "./build.sh"
+    startCommand: "cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.6
+      - key: NODE_VERSION
+        value: 20.10.0
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        value: sqlite:///./resqai.db
+      - key: ALERT_CHANNEL
+        value: simulated
+      - key: GOOGLE_MAPS_API_KEY
+        value: ""

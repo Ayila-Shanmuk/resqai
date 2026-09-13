@@ -1,0 +1,21 @@
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+sqlalchemy==2.0.35
+python-dotenv==1.0.1
+pydantic[email]==2.9.2
+# Password hashing uses bcrypt directly (see services/auth_service.py) -
+# passlib is intentionally NOT used here, since passlib==1.7.4's bcrypt
+# backend probes for an attribute that bcrypt>=4.1 removed, causing
+# "AttributeError: module 'bcrypt' has no attribute '__about__'" on every
+# hash/verify call. Calling bcrypt.hashpw/checkpw ourselves avoids that
+# broken version-detection code path entirely.
+bcrypt>=4.0
+python-jose[cryptography]==3.3.0
+httpx==0.27.2
+pandas==2.2.3
+numpy==1.26.4
+scikit-learn==1.5.2
+xgboost==2.1.1
+shap==0.46.0
+joblib==1.4.2
+python-multipart==0.0.9
