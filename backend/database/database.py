@@ -18,6 +18,10 @@ load_dotenv()
 #   MySQL:      mysql+pymysql://user:password@localhost:3306/resqai
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./resqai.db")
 
+# Render and Heroku sometimes provide 'postgres://' which SQLAlchemy 2.0 requires as 'postgresql://'
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
 connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
 
 engine = create_engine(DATABASE_URL, connect_args=connect_args)
